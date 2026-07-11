@@ -1,35 +1,29 @@
 class Solution {
-    int solve(int ind,int buy,vector<int>& prices,vector<vector<vector<int>>>&dp,int cap) {
-        int n = prices.size();
-        if(cap==0) return 0;
-        if(ind==n) return 0;
 
-        if(dp[ind][buy][cap]!=-1) return dp[ind][buy][cap];
-
-        if(buy==1){
-        int takeit = -prices[ind]+solve(ind+1,0,prices,dp,cap);
-        int nottakeit = 0+solve(ind+1,1,prices,dp,cap);
-        return dp[ind][buy][cap]=max(takeit,nottakeit);
-        }
-        else{
-           int takeitsell = prices[ind]+solve(ind+1,1,prices,dp,cap-1);
-            int nottakeitsell = 0+solve(ind+1,0,prices,dp,cap);
-            return dp[ind][buy][cap]=max(takeitsell,nottakeitsell);
-        }
-
-
-    }
 public:
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
         int buy = 1;
         int cap = 2;
 
-        vector<vector<vector<int>>>dp(n,vector<vector<int>>(2,vector<int>(3,-1)));
+        vector<vector<vector<int>>> dp(n + 1, vector<vector<int>>(2,vector<int>(3, 0)));
+        for (int ind = n - 1; ind >=0; ind--) {
+            for (int buy = 1; buy >= 0; buy--) {
+                for(int cap = 2;cap>0;cap--){
+                if (buy == 1) {
+                    int takeit = -prices[ind] + dp[ind + 1][0][cap];
+                    int nottakeit = 0 + dp[ind + 1][1][cap];
+                     dp[ind][buy][cap] = max(takeit, nottakeit);
+                } else {
+                    int takeitsell = prices[ind] + dp[ind + 1][ 1][cap-1];
+                    int nottakeitsell = 0 + dp[ind + 1][0][cap];
+                     dp[ind][buy][cap] = max(takeitsell, nottakeitsell);
+                }
+                }
+            }
+            
+        }
+        return dp[0][1][2];
 
-
-        int ans = solve(0,buy,prices,dp,cap);
-        return ans;
-        
     }
-};
+    };
