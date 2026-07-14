@@ -36,15 +36,10 @@ public:
         int n = expression.size();
 
         for(int i = 0;i<n;i++){
-            if(expression[i]=='&'){
+            if(expression[i]=='&'||expression[i]=='|'||expression[i]=='!'){
                 oper.push(expression[i]);
             }
-            else if(expression[i]=='|'){
-                 oper.push(expression[i]);
-            }
-            else if(expression[i]=='!'){
-                 oper.push(expression[i]);
-            }
+            
             
             else if(expression[i]=='('||expression[i]=='t'||expression[i]=='f'){
                  opn.push(expression[i]);            
