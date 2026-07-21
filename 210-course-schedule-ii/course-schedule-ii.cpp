@@ -31,15 +31,12 @@ public:
         vector<int> visited(n, 0);
         vector<int> inrecursion(n, 0);
         stack<int> st;
-        bool iscylepresent=false;
+        bool iscylepresent = false;
 
         for (int i = 0; i < n; i++) {
-            if (!visited[i]) {
-                iscylepresent = iscycle(adj, i, visited, inrecursion, st);
-                if(iscylepresent==true){
-                    return {};
-                }
+            if (!visited[i] && iscycle(adj, i, visited, inrecursion, st)) {
 
+                return {};
             }
         }
 
@@ -50,7 +47,6 @@ public:
             st.pop();
         }
 
-       
         return result;
     }
 };
