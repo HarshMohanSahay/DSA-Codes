@@ -1,45 +1,38 @@
+// using DFS 
+
 class Solution {
 public:
+    bool iscycle(unordered_map<int,vector<int>> &adj,int u,vector<int> &visited, vector<int> &inrecursion){
+        visited[u]=1;
+        inrecursion[u]=1;
+
+        for(auto &v:adj[u]){
+            if(!visited[v] && iscycle(adj,v,visited,inrecursion)==true){
+                return true;
+            }
+            else if(inrecursion[v]==1) return true;
+        }
+        inrecursion[u] = 0;
+        return false;
+    }
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
         unordered_map<int,vector<int>> adj;
 
-        for(auto &edge:prerequisites){
-            int u=edge[1];
-            int v = edge[0];
+        for(auto &edges : prerequisites){
+            int u=edges[1];
+            int v = edges[0];
 
             adj[u].push_back(v);
-
         }
 
-        vector<int>indegree(numCourses,0);
-        for(int u=0;u<numCourses;u++){
-            for(auto &v:adj[u]){
-                indegree[v]++;
-            }
-        }
-        queue<int>q;
-        int count =0;
+        vector<int> visited(numCourses,0);
+        vector<int> inrecursion(numCourses,0);
+
         for(int i =0;i<numCourses;i++){
-            if(indegree[i]==0){
-                count++;
-                q.push(i);
+            if(!visited[i] && iscycle(adj,i,visited,inrecursion)==true){
+                return false;
             }
         }
-        while(!q.empty()){
-            int curr = q.front();
-            q.pop();
-        
-            for(auto v:adj[curr]){
-                indegree[v]--;
-                if(indegree[v]==0){
-                    count++;
-                    q.push(v);
-                }
-            }
-        }
-        if(count==numCourses){
-            return true;
-        }
-        return false;
+        return true;
     }
 };
