@@ -20,6 +20,8 @@ public:
             pq.pop();
             if (x == n - 1 && y == m - 1)
                 return diff;
+            if(diff > result[x][y])
+                continue;
 
             for (int i = 0; i < 4; i++) {
                 int x_ = x + row[i];
