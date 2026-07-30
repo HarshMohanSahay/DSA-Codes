@@ -10,13 +10,15 @@
  */
 class Solution {
 public:
-    struct Compare {
+    class Compare {
+    public:
         bool operator()(ListNode* a, ListNode* b) { return a->val > b->val; }
     };
+
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         ListNode dummy = ListNode(0);
 
-        priority_queue<ListNode*, vector<ListNode*>, Compare>pq;
+        priority_queue<ListNode*, vector<ListNode*>, Compare> pq;
 
         for (auto it : lists) {
             if (it)
