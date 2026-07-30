@@ -10,37 +10,33 @@
  */
 class Solution {
 public:
-
-    ListNode* mergelists(ListNode* l1 , ListNode* l2, vector<ListNode*>& lists){
-        if(l1==NULL) return l2;
-        if(l2==NULL) return l1;
-
-        if(l1->val<=l2->val){
-            l1->next = mergelists(l1->next,l2,lists);
-            return l1;
-        }
-        else{
-            l2->next = mergelists(l1,l2->next,lists);
-            return l2;
-        }
-        return NULL;
-
-    }
-    ListNode* partitionandmerge(int start,int end,vector<ListNode*>& lists){
-        if(start>end) return NULL;
-        if(start == end ) return lists[start];
-
-        int mid = (start+end)/2;
-
-        ListNode* L1 = partitionandmerge(start,mid,lists);
-        ListNode* L2 = partitionandmerge(mid+1,end,lists);
-
-        return mergelists(L1,L2,lists);
-    }
+    struct Compare {
+        bool operator()(ListNode* a, ListNode* b) { return a->val > b->val; }
+    };
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        int n = lists.size();
-        if(n==0) return NULL;
+        ListNode dummy = ListNode(0);
 
-        return partitionandmerge(0,n-1,lists);
+        priority_queue<ListNode*, vector<ListNode*>, Compare>pq;
+
+        for (auto it : lists) {
+            if (it)
+                pq.push(it);
+        }
+
+        ListNode* res = &dummy;
+
+        while (!pq.empty()) {
+            ListNode* top = pq.top();
+            pq.pop();
+
+            res->next = top;
+            res = res->next;
+
+            if (top->next) {
+                pq.push(top->next);
+            }
+        }
+
+        return dummy.next;
     }
 };
