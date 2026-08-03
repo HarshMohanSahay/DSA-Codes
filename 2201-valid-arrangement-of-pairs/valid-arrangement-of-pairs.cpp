@@ -23,8 +23,7 @@ public:
         int start = pairs[0][0];
         for (auto& it : outdegree) {
             int node = it.first;
-            int value = it.second;
-            if (value - indegree[node] == 1) {
+            if (outdegree[node] - indegree[node] == 1) {
                 start = node;
                 break;
             }
