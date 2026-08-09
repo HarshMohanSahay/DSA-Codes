@@ -1,6 +1,7 @@
 class Solution {
 public:
     int smallestNumber(int n, int t) {
+        if(n%10 == 0) return n;
         int mul = 1;
         int m = n;
         int count=0;
