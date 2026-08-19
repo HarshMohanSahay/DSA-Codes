@@ -18,11 +18,11 @@ public:
         ListNode* largeptr = largelist;
         while(temp){
             if(temp->val<x){
-                smallptr->next = new ListNode(temp->val);
+                smallptr->next = temp;
                 smallptr = smallptr->next;
             }
             else{
-                largeptr->next = new ListNode(temp->val);
+                largeptr->next = temp;
                 largeptr = largeptr->next;
             }
             temp = temp->next;
