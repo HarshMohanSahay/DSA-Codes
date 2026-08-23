@@ -17,7 +17,7 @@ public:
             }
             start++;
         }
-        if(zerocount<=k)
+        
         maxcount = max(maxcount,end-start+1);
        }
        return maxcount;
