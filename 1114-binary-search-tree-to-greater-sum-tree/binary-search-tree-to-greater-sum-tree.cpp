@@ -1,7 +1,7 @@
 
 class Solution {
 public:
-    void postorder(TreeNode* root,int &sum){
+    void postorder(TreeNode* &root,int &sum){
         if(!root) return ;
         postorder(root->right,sum);
         sum += root->val;
