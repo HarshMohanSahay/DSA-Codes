@@ -8,7 +8,7 @@ public:
                 return true;
             }
             st.insert(nums[i]);
-            if(st.size()>k){
+            if(i>=k){
                 st.erase(nums[i-k]);
             }
         }
