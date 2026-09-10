@@ -8,17 +8,18 @@ public:
             if(i>0 && nums[i]==nums[i-1]) continue;
             int j = i+1;
             int k = n-1;
+            int target = -nums[i];
             while(j<k){
-                int sum = nums[i]+nums[j]+nums[k];
-                if(sum<0)j++;
-                else if(sum>0)k--;
+                
+                if(nums[j]+nums[k]<target)j++;
+                else if(nums[j]+nums[k]>target)k--;
                 else{
                     vector<int> temp = {nums[i],nums[j],nums[k]};
                     ans.push_back(temp);
                     j++;
                     k--;
                     while(j<k && nums[j]==nums[j-1])j++;
-                    while(i<k && nums[k]==nums[k+1])k--;
+                    while(j<k && nums[k]==nums[k+1])k--;
                 }
             }
         }
