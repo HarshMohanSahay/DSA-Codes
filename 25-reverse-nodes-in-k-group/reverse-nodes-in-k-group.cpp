@@ -38,7 +38,7 @@ public:
         while( temp!=NULL ){
             kthnode = findkthnode(temp,k);
             if(kthnode == NULL){
-                if(prevLast) prevLast->next = nextnode;
+                 prevLast->next = nextnode;
                 break;
 
             }
