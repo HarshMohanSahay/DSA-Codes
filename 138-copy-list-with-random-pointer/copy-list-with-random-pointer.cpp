@@ -46,7 +46,7 @@ public:
         Node* newcurr = newhead;
 
         while(curr  && newcurr){
-            curr->next = curr->next==NULL ? NULL :curr->next->next;
+            curr->next = curr->next->next;
             newcurr->next = newcurr->next==NULL ? NULL :newcurr->next->next;
 
             curr = curr->next;
