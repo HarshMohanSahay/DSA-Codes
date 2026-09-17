@@ -46,17 +46,17 @@ public:
         delnext->prev = delprev;
     }
 
-    int get(int key_) {
-        if (m.find(key_) != m.end()) {
+    int get(int key) {
+        if (m.find(key) != m.end()) {
 
-            node* resnode = m[key_];
+            node* resnode = m[key];
             int res = resnode->val;
 
-            m.erase(key_);
+            m.erase(key);
             deletenode(resnode);
             addnode(resnode);
 
-            m[key_] = head->next;
+            m[key] = head->next;
 
             return res;
         }
