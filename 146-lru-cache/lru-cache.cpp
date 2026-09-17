@@ -64,14 +64,14 @@ public:
         return -1;
     }
 
-    void put(int key_, int value) {
+    void put(int key, int value) {
 
         // If key already exists
-        if (m.find(key_) != m.end()) {
+        if (m.find(key) != m.end()) {
 
-            node* existingnode = m[key_];
+            node* existingnode = m[key];
 
-            m.erase(key_);
+            m.erase(key);
             deletenode(existingnode);
         }
 
@@ -83,8 +83,8 @@ public:
         }
 
         // Add new node at front
-        addnode(new node(key_, value));
+        addnode(new node(key, value));
 
-        m[key_] = head->next;
+        m[key] = head->next;
     }
 };
