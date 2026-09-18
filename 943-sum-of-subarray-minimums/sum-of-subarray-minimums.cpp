@@ -10,35 +10,31 @@ public:
 
         stack<int> st;
 
-        // Previous smaller element
-        for(int i = 0; i < n; i++) {
+        
+       
 
-            while(!st.empty() && arr[st.top()] >= arr[i]) {
+      
+
+        // Next smaller or equal element
+        for(int i = 0; i <n; i++) {
+
+            while(!st.empty() && arr[st.top()] > arr[i]) {
+                right[st.top()] = i;
                 st.pop();
-            }
-
-            if(!st.empty()) {
-                left[i] = st.top();
             }
 
             st.push(i);
         }
-
-        while(!st.empty()) {
+          while(!st.empty()) {
             st.pop();
         }
+        // Previous smaller element
+         for(int i = n-1; i >=0; i--) {
 
-        // Next smaller or equal element
-        for(int i = n - 1; i >= 0; i--) {
-
-            while(!st.empty() && arr[st.top()] > arr[i]) {
+            while(!st.empty() && arr[st.top()] >= arr[i]) {
+                left[st.top()] = i;
                 st.pop();
             }
-
-            if(!st.empty()) {
-                right[i] = st.top();
-            }
-
             st.push(i);
         }
 
