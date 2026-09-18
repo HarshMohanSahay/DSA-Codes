@@ -2,7 +2,6 @@ class Solution {
 public:
     long long subArrayRanges(vector<int>& arr) {
         int n = arr.size();
-        const int MOD = 1e9 + 7;
 
         vector<int> leftsm(n, -1);
         vector<int> rightsm(n, n);
