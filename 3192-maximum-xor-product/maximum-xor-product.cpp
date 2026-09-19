@@ -8,7 +8,7 @@ public:
         ll xXorb = 0;
 
         // 49th bit to nth bit
-        for (ll i = 49; i >= n; i--) {
+        for (int i = 49; i >= n; i--) {
 
             bool a_ith_bit = (a &(1ll<<i)) > 0;
             bool b_ith_bit = (b &(1ll<<i)) > 0;
