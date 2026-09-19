@@ -10,8 +10,8 @@ public:
         // 49th bit to nth bit
         for (ll i = 49; i >= n; i--) {
 
-            bool a_ith_bit = ((a >> i) & 1) > 0;
-            bool b_ith_bit = ((b >> i) & 1) > 0;
+            bool a_ith_bit = (a &(1ll<<i)) > 0;
+            bool b_ith_bit = (b &(1ll<<i)) > 0;
 
             if (a_ith_bit == true) {
                 xXora = (xXora | (1LL << i));
