@@ -22,18 +22,17 @@ public:
             }
         }
 
-        for (ll i = n - 1; i >= 0; i--) {
+        for (int i = n - 1; i >= 0; i--) {
 
-            bool a_ith_bit = ((a >> i) & 1) > 0;
-            bool b_ith_bit = ((b >> i) & 1) > 0;
+            bool a_ith_bit = (a &(1ll<<i)) > 0;
+            bool b_ith_bit = (b &(1ll<<i)) > 0;
 
             if (a_ith_bit == b_ith_bit) {
                 xXora = (xXora | (1LL << i));
                 xXorb = (xXorb | (1LL << i));
-                continue;
             }
 
-            if (xXora > xXorb) {
+           else if (xXora > xXorb) {
                 xXorb = (xXorb | (1LL << i));
             }
             else {
