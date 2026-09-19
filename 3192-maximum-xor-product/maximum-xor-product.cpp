@@ -32,7 +32,7 @@ public:
                 xXorb = (xXorb | (1LL << i));
             }
 
-           else if (xXora > xXorb) {
+            if (xXora > xXorb) {
                 xXorb = (xXorb | (1LL << i));
             }
             else {
