@@ -26,7 +26,7 @@ public:
 
         for (int i = 0; i < currLevelSize; i++) {
             TreeNode* curr = q.front().first;
-            ll index = q.front().second;
+            ll index = q.front().second-1;
             q.pop();
 
             if (curr->left) {
